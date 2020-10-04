@@ -150,7 +150,10 @@ async function addEmployee(req, token, res) {
                
             }
             else{
-                
+                return res.status(403).json({
+                    message: 'You are not allowed',
+                    statusCode: 403
+                })
             }
         })
     } catch (err) {
@@ -166,8 +169,7 @@ async function getAll(req, res, next) {
             }
             let user = await User.aggregate([{      //to project the users details based on the userRoles
                 $project: {
-                    _id: true,
-                    id: true,
+                    _id: false,
                     userName: true,
                     email: true,
                     userRole: {

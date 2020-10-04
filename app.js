@@ -10,10 +10,6 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from 'cors';
 
-import {
-    setUser
-} from './config/handlers/auth.handler';
-
 import errorHandler from './config/handlers/error.handler.js';
 import users from './routes/user.controller';
 
