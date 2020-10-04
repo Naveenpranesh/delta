@@ -6,16 +6,16 @@
 
 
 import express from "express";
-import { login_check, authRole, verifyToken } from '../config/handlers/auth.handler';
+import { verifyToken } from '../config/handlers/auth.handler';
 import authSchema from '../config/handlers/field.validation';
 import userService from '../service/user.service';
 
 const router = express.Router();
 
 router.post('/signIn', authenticate);
-router.post('/addEmployee', verifyToken, login_check, authRole, addEmployee);
+router.post('/addEmployee', verifyToken, addEmployee);
 router.post('/signUp', verifyToken, signUp);
-router.post('/getAll', verifyToken, getAll);
+router.get('/getAll', verifyToken, getAll);
 
 function signUp(req, res, next) {
     try {
@@ -67,5 +67,6 @@ function getAll(req, res, next) {
         throw err
     }
 }
+
 
 module.exports = router;

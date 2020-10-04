@@ -20,14 +20,14 @@ import users from './routes/user.controller';
 const app = express();
 
 app.use(bodyParser.json());
-app.use(setUser);
+
 app.use(cors());
 
 app.use('/users', users);
 
 app.use(errorHandler);
 
-const port = process.env.NODE_ENV ==='production' ? 80 : 83;
+const port = process.env.NODE_ENV ==='production' ? 80 : 8000;
 
 process.setMaxListeners(Infinity);
 

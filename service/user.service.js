@@ -113,7 +113,8 @@ async function addEmployee(req, token, res) {
                     salary,
                     userName
                 } = req
-                if (authData.sub.userRole === 'Manager' && userRole !== 'Admin') {                       //getting only the required feild from the user
+                console.log(authData.sub)
+                                //getting only the required feild from the user
                     let user = await User.findOne({
                         email: email
                     })
@@ -146,13 +147,10 @@ async function addEmployee(req, token, res) {
                             statusCode: 409
                         })
                     }
-                }
-                else {
-                    return res.status(400).json({
-                        message: 'Oopsy! Manager can not add for Admin roles.',
-                        statusCode: 400
-                    })
-                }
+               
+            }
+            else{
+                
             }
         })
     } catch (err) {
