@@ -8,20 +8,25 @@ module.exports = {
 
 
 async function verifyToken(req, res, next) {
-    //get Auth header value
-    const bearerHeader = req.headers['authorization'];
-    //check if bearer is undefined
-    if (typeof bearerHeader !== 'undefined') {
-        //Split at the space
-        const bearer = bearerHeader.split(' ');
-        //Get token from array
-        const bearerToken = bearer[1];
-        //Set the token
-        req.token = bearerToken;
+    try {
+        //get Auth header value
+        const bearerHeader = req.headers['authorization'];
+        //check if bearer is undefined
+        if (typeof bearerHeader !== 'undefined') {
+            //Split at the space
+            const bearer = bearerHeader.split(' ');
+            //Get token from array
+            const bearerToken = bearer[1];
+            //Set the token
+            req.token = bearerToken;
 
-        next()
+            next()
+        }
+        else {
+            res.sendStatus(403);
+        }
     }
-    else {
-        res.sendStatus(403);
+    catch (err) {
+        console.log(err)
     }
 }

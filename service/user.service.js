@@ -112,9 +112,9 @@ async function addEmployee(req, token, res) {
                     phoneNo,
                     salary,
                     userName
-                } = req
+                } = req    //getting only the required feild from the user
                 console.log(authData.sub)
-                                //getting only the required feild from the user
+                             
                     let user = await User.findOne({
                         email: email
                     })
